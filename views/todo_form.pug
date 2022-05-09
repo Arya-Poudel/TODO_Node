@@ -9,7 +9,7 @@ block content
         label(for='description') Description:
         input.input-field(id='description' type='textfield' name='description' placeholder='description' value=task.description required)
         label(for='date') Due date: 
-        input.input-field(id='date' type='date' name='date' value=task.date required)
+        input.input-field(id='date' type='date' name='date' value=task.date.toISOString().substring(0, 10) required)
         label(for='time') Due time: 
         input.input-field(id='time' type='time' name='time' value=task.time required)
         label.radio-inline
