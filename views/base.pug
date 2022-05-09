@@ -1,0 +1,17 @@
+doctype html
+html
+	head
+		title= 'TODO APP'
+		link(rel='stylesheet' href='/styles.css' type='text/css')
+		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width,initial-scale=1")
+
+	body
+		div.navbar
+			a(href="/")
+				h1 TO-DOs
+			a(href="/add")
+				button.btn Add Task
+
+		div.content
+			block content

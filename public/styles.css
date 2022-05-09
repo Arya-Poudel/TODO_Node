@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background: #4a4949;
+    color: #f3b1b1;
+    padding: 25px;
+}
+
+a {
+    text-decoration: none!important;
+    color: bisque;
+}
+
+.btn {
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 5px;
+    cursor: pointer;
+    background: bisque;
+    margin: 3px;
+}
+
+.contentDiv {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.menuDiv {
+    display: grid;
+    margin: 20px;
+    grid-gap: 10px;
+    align-items: start;
+    justify-items: start;
+    align-content: flex-start;
+}
+
+.form_div {
+    width: 90%;
+    max-width: 450px;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%);
+    background: #4a4949;
+    color: bisque;
+    font: bolder;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-field {
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    width: 350px;
+    margin: 5px;
+}
+
+label {
+    font-size: large;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.taskDiv {
+    background: #a9a7a4;
+    margin: 5px;
+    padding: 10px;
+}
+
+.delBtns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

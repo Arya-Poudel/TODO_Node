@@ -1,0 +1,11 @@
+extends base
+
+block content
+
+	h1(style={'text-align': 'center' ,'margin' : '10px 0'})  Are you sure you want to delete this message?
+
+	form(method='POST' action='')
+		div.delBtns
+			button.btn(type='submit') Delete
+			a(href="/")
+				button.btn(type='button') Cancel

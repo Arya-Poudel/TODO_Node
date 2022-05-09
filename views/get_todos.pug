@@ -1,0 +1,84 @@
+extends base 
+
+block content
+
+    div.contentDiv
+        div.menuDiv
+            button.btn(onclick='getDoneTodos()') Completed tasks 
+            button.btn(onclick='getUpcomingTodos()') Upcoming tasks
+
+        div.dataDiv
+            h1#tasktitle(style={'margin' : '10px 0'}) All Tasks:
+            for task in tasks
+                div.taskDiv
+                    h2 #{task.name}
+                    p #{task.description}
+                    p #{task.date.toDateString()} 
+                    p #{task.time}  
+                    a(href="/update/" + task._id)
+                        button.btn Update
+                    a(href="/delete/" + task._id)
+                        button.btn Delete
+    script. 
+
+        const listTasks = (tasks) => {
+            const data_div = document.querySelector('.dataDiv');
+            while (data_div.childNodes.length > 1) {
+                data_div.removeChild(data_div.lastChild);
+            }
+             tasks.forEach((task, index) => {
+                const taskDiv = document.createElement('div');
+                taskDiv.classList.add('taskDiv');
+                const nameDiv = document.createElement('h2');
+                nameDiv.textContent = task.name;
+                const descDiv = document.createElement('p');
+                descDiv.textContent = task.description; 
+                const dateDiv = document.createElement('p');
+                dateDiv.textContent = new Date(task.date).toDateString(); 
+                const timeDiv = document.createElement('p');
+                timeDiv.textContent = task.time;
+                const updateLink = document.createElement('a'); 
+                const updateBtn = document.createElement('button');
+                updateBtn.textContent = "Update";
+                updateBtn.classList.add('btn')
+                updateLink.appendChild(updateBtn); 
+                updateLink.href = "/update/" + task._id;
+                const deleteLink = document.createElement('a'); 
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = "Delete";
+                deleteBtn.classList.add('btn')
+                deleteLink.appendChild(deleteBtn); 
+                deleteLink.href = "/delete/" + task._id;
+                taskDiv.append(nameDiv);
+                taskDiv.append(descDiv);
+                taskDiv.append(dateDiv);
+                taskDiv.append(timeDiv);
+                taskDiv.append(updateLink);
+                taskDiv.append(deleteLink);
+                data_div.append(taskDiv);
+            });
+        }
+
+        getDoneTodos = catchAsync(async() => {
+            const title = document.getElementById('tasktitle');
+            title.textContent = 'Completed tasks';
+            const response = await fetch("getDoneTodos",{method:'GET'});
+            const data = await response.json();
+            const tasks = data.tasks;
+            listTasks(tasks);
+        });
+
+        getUpcomingTodos = catchAsync(async() => {
+            const title = document.getElementById('tasktitle');
+            title.textContent = 'Upcoming tasks today';
+            const response = await fetch("getUpcomingTodos",{method:'GET'});
+            const data = await response.json();
+            const tasks = data.tasks;
+            listTasks(tasks);
+        });
+
+        function catchAsync(func) {
+            return function(req, res, next) {
+                func(req, res, next).catch(next);
+            };
+        }

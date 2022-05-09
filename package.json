@@ -1,0 +1,22 @@
+{
+    "name": "todo_node",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app",
+        "devstart": "nodemon app"
+    },
+    "author": "Arya-Poudel",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^16.0.0",
+        "express": "^4.18.1",
+        "express-validator": "^6.14.0",
+        "mongoose": "^6.3.2",
+        "pug": "^3.0.2"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.16"
+    }
+}
